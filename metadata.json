@@ -1,0 +1,5 @@
+{
+  "name": "Image Warp Tool",
+  "description": "An interactive web application to warp images by manipulating control points on a deformable mesh. Users can load an image, adjust mesh resolution and warp intensity, and save the final result as a PNG.",
+  "requestFramePermissions": []
+}

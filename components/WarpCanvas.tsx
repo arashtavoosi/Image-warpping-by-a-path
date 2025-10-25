@@ -58,6 +58,7 @@ const DeformablePlane: React.FC = () => {
     }
     pos.needsUpdate = true;
     geom.computeVertexNormals();
+    geom.computeBoundingSphere();
   });
   
   const onPointerDown = (e: ThreeEvent<PointerEvent>) => {

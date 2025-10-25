@@ -18,6 +18,8 @@ interface WarpState {
   updateControlPoint: (index: number, position: THREE.Vector3) => void;
   saveTrigger: number;
   triggerSave: () => void;
+  isSaving: boolean;
+  setIsSaving: (isSaving: boolean) => void;
 }
 
 const initialPoints = [
@@ -36,7 +38,9 @@ export const useWarpStore = create<WarpState>((set) => ({
   imageLengthRatio: 0.5,
   controlPoints: initialPoints,
   saveTrigger: 0,
+  isSaving: false,
 
+  setIsSaving: (isSaving) => set({ isSaving }),
   setImageUrl: (url) => set({ imageUrl: url }),
   setResolution: (res) => set({ resolution: res }),
   setWarpIntensity: (intensity) => set({ warpIntensity: intensity }),

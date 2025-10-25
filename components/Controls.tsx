@@ -20,6 +20,7 @@ const Controls: React.FC = () => {
     setImageLengthRatio,
     setImageUrl,
     triggerSave,
+    isSaving,
   } = useWarpStore();
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -157,10 +158,23 @@ const Controls: React.FC = () => {
         
         <button
           onClick={triggerSave}
-          className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-4 rounded-md transition-all duration-200 flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-green-400"
+          disabled={isSaving}
+          className="w-full bg-green-600 hover:bg-green-500 text-white font-bold py-3 px-4 rounded-md transition-all duration-200 flex items-center justify-center space-x-2 focus:outline-none focus:ring-2 focus:ring-green-400 disabled:bg-gray-500 disabled:cursor-not-allowed"
         >
-          <Download size={20} />
-          <span>Save as PNG</span>
+          {isSaving ? (
+            <>
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              <span>Saving...</span>
+            </>
+          ) : (
+            <>
+              <Download size={20} />
+              <span>Save as PNG</span>
+            </>
+          )}
         </button>
       </div>
     </aside>
